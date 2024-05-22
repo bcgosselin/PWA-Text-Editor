@@ -8,6 +8,13 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 
 module.exports = () => {
   return {
+    // globDirectory: './dist/',
+    // globPatterns: [
+    //   '**/*.{html,js,css,png,svg}'
+    // ],
+    // swDest: './dist/sw.js',
+    // clientsClaim: true,
+    // skipWaiting: true,
     mode: 'development',
     entry: {
       main: './src/js/index.js',
@@ -18,12 +25,51 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      
+      new HtmlWebpackPlugin({
+        template: './index.html',
+        filename: 'index.html',
+        chunks: ['main']
+      }),
+      // new HtmlWebpackPlugin({
+      //   template: './src/js/install.html',
+      //   filename: 'install.html',
+      //   chunks: ['install']
+      // }),
+      new WebpackPwaManifest({
+        name: 'Just Another Text Editor',
+        short_name: 'Jate',
+        description: 'text editor',
+        background_color: '#ffffff',
+        theme_color: '#2196f3',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512]
+          }
+        ]
+      }),
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js'
+      })
     ],
 
     module: {
       rules: [
-        
+        {
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader']
+        },
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          }
+        }
       ],
     },
   };
