@@ -9,3 +9,6 @@ concurrently set up:
 
 cache:
     https://developer.chrome.com/docs/workbox/modules/workbox-strategies
+
+install.js
+    https://developer.mozilla.org/en-US/docs/Web/API/BeforeInstallPromptEvent
