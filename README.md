@@ -6,3 +6,6 @@ Starter Code:
 
 concurrently set up:
     https://www.npmjs.com/package/concurrently#usage
+
+cache:
+    https://developer.chrome.com/docs/workbox/modules/workbox-strategies
