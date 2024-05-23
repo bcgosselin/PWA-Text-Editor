@@ -19,7 +19,7 @@ export const putDb = async (content) => {
   const store = tx.objectStore('jate');
   await store.put({ content });
   await tx.done;
-  console.log('Content added to the database');
+  console.log('Content added to the database', content);
 };
 
 // Function to get all content from the database
