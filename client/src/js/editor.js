@@ -5,6 +5,7 @@ import { header } from './header';
 export default class {
   constructor() {
     const localData = localStorage.getItem('content');
+    console.log('content loaded from local storage');
 
     // check if CodeMirror is loaded
     if (typeof CodeMirror === 'undefined') {
@@ -27,10 +28,12 @@ export default class {
     getDb().then((data) => {
       console.info('Loaded data from IndexedDB, injecting into editor');
       this.editor.setValue(data || localData || header);
+      console.info('injecting', content);
     });
 
     this.editor.on('change', () => {
       localStorage.setItem('content', this.editor.getValue());
+      console.log('content saved to local storage', this.editor.getValue());
     });
 
     // Save the content of the editor when the editor itself is loses focus

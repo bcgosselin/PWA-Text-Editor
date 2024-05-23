@@ -36,6 +36,7 @@ module.exports = () => {
       //   chunks: ['install']
       // }),
       new WebpackPwaManifest({
+        filename: 'mainfest.json',
         name: 'Just Another Text Editor',
         short_name: 'Jate',
         description: 'text editor',

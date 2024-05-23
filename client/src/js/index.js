@@ -31,3 +31,5 @@ if ('serviceWorker' in navigator) {
 } else {
   console.error('Service workers are not supported in this browser.');
 }
+
+editor.editor.setValue(header + '\n\n' + editor.editor.getValue());

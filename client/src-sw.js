@@ -32,23 +32,13 @@ registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 // Implement asset caching with a stale-while-revalidate strategy
 registerRoute(
-  ({ request }) => {
-    console.log(request);
-    return (
-      // CSS
-      request.destination === 'style' ||
-      // JavaScript
-      request.destination === 'script' 
-      // ||
-      //images
-      // request.destination === 'image'
-    );
-  },
+  /\.(?:js|css|png|jpg|jpeg|svg|gif)$/,
   new StaleWhileRevalidate({
-    cacheName: 'static-resources',
+    cacheName: 'assets-cache',
     plugins: [
-      new CacheableResponsePlugin({
-        statuses: [0, 200],
+      new ExpirationPlugin({
+        maxEntries: 50,
+        maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
       }),
     ],
   })

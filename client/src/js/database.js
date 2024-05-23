@@ -29,7 +29,7 @@ export const getDb = async () => {
   const store = tx.objectStore('jate');
   const content = await store.getAll();
   await tx.done;
-  return content;
+  return content.map(entry => entry.value);
 };
 
 initdb(); // Initialize the database when the module is loaded
