@@ -17,9 +17,9 @@ export const putDb = async (content) => {
   const db = await initdb();
   const tx = db.transaction('jate', 'readwrite');
   const store = tx.objectStore('jate');
-  await store.put({ content });
+  await store.put({ id:1, content });
   await tx.done;
-  console.log('Content added to the database', content);
+  console.log('Content added to the database');
 };
 
 // Function to get all content from the database
@@ -29,7 +29,7 @@ export const getDb = async () => {
   const store = tx.objectStore('jate');
   const content = await store.getAll();
   await tx.done;
-  return content.map(entry => entry.value);
+  return content.map(entry => entry.content);
 };
 
 initdb(); // Initialize the database when the module is loaded

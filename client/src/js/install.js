@@ -5,6 +5,8 @@ let installPrompt;
 window.addEventListener('beforeinstallprompt', (event) => {
   event.preventDefault();
   installPrompt = event;
+  const installButton = document.getElementById('buttonInstall');
+  installButton.classList.remove('hidden');
 });
 
 butInstall.addEventListener('click', async () => {
@@ -18,5 +20,6 @@ butInstall.addEventListener('click', async () => {
 
 window.addEventListener('appinstalled', (event) => {
   console.log('App installed successfully');
+  butInstall.classList.add('hidden');
 });
 

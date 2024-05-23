@@ -8,13 +8,6 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 
 module.exports = () => {
   return {
-    // globDirectory: './dist/',
-    // globPatterns: [
-    //   '**/*.{html,js,css,png,svg}'
-    // ],
-    // swDest: './dist/sw.js',
-    // clientsClaim: true,
-    // skipWaiting: true,
     mode: 'development',
     entry: {
       main: './src/js/index.js',
@@ -30,13 +23,8 @@ module.exports = () => {
         filename: 'index.html',
         chunks: ['main']
       }),
-      // new HtmlWebpackPlugin({
-      //   template: './src/js/install.html',
-      //   filename: 'install.html',
-      //   chunks: ['install']
-      // }),
       new WebpackPwaManifest({
-        filename: 'mainfest.json',
+        filename: 'manifest.json',
         name: 'Just Another Text Editor',
         short_name: 'Jate',
         description: 'text editor',
@@ -54,7 +42,6 @@ module.exports = () => {
         swDest: 'src-sw.js'
       })
     ],
-
     module: {
       rules: [
         {
