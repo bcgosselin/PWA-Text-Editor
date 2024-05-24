@@ -23,7 +23,7 @@ export const putDb = async (content) => {
   console.log('Content added to the database');
 };
 
-// Function to get all content from the database
+// Function to content from object stored in DB
 export const getDb = async () => {
   // Open the 'jate' database with version 1
   const db = await openDB('jate', 1);

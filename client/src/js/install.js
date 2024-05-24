@@ -1,25 +1,21 @@
 const butInstall = document.getElementById('buttonInstall');
 
-let installPrompt;
-
 window.addEventListener('beforeinstallprompt', (event) => {
   event.preventDefault();
-  installPrompt = event;
-  const installButton = document.getElementById('buttonInstall');
-  installButton.classList.remove('hidden');
+  window.installPrompt = event;
+  butInstall.classList.remove('hidden');
 });
 
 butInstall.addEventListener('click', async () => {
-  if (installPrompt) {
-    installPrompt.prompt();
-    const choiceResult = await installPrompt.userChoice;
-    installPrompt = null;
-    console.log('User choice:', choiceResult.outcome);
-  }
-});
+  const promptEvent = window.installPrompt;
+  if (!promptEvent) return;
 
-window.addEventListener('appinstalled', (event) => {
-  console.log('App installed successfully');
+  promptEvent.prompt();
+  window.installPrompt = null;
   butInstall.classList.add('hidden');
 });
 
+window.addEventListener('appinstalled', (event) => {
+  console.log('App installed successfully', event);
+  window.installPrompt = null;
+});
