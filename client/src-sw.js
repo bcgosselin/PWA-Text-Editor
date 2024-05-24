@@ -32,17 +32,17 @@ registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 // Implement asset caching with a stale-while-revalidate strategy
 registerRoute(
-  /\.(?:js|css|png|jpg|jpeg|svg|gif)$/,
+  ({ request }) => ['style', 'script', 'worker'].includes(request.destination),
   new StaleWhileRevalidate({
-    cacheName: 'assets-cache',
+    cacheName: 'asset-cache',
     plugins: [
-      new ExpirationPlugin({
-        maxEntries: 50,
-        maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
       }),
     ],
   })
 );
+
 
 // Implement offline fallback for HTML pages
 offlineFallback({
