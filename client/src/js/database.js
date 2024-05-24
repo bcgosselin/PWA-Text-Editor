@@ -14,6 +14,7 @@ const initdb = async () =>
 
 // Function to add content to the database
 export const putDb = async (content) => {
+  // Open the 'jate' database with version 1
   const db = await openDB('jate', 1);
   const tx = db.transaction('jate', 'readwrite');
   const store = tx.objectStore('jate');
@@ -24,12 +25,15 @@ export const putDb = async (content) => {
 
 // Function to get all content from the database
 export const getDb = async () => {
-  const db = await initdb();
+  // Open the 'jate' database with version 1
+  const db = await openDB('jate', 1);
   const tx = db.transaction('jate', 'readonly');
   const store = tx.objectStore('jate');
-  const content = await store.getAll();
-  await tx.done;
-  return content.map(entry => entry.content);
+  // Get the content from the object store with id 1
+  const content = store.get(1);
+  const result = await content;
+  // Return the value of the retrieved content, if available
+  return result?.value;
 };
 
 initdb(); // Initialize the database when the module is loaded
