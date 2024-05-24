@@ -26,14 +26,14 @@ module.exports = () => {
       new WebpackPwaManifest({
         filename: 'manifest.json',
         name: 'Just Another Text Editor',
-        short_name: 'JATE',
+        short_name: 'J',
         description: 'text editor',
         background_color: '#ffffff',
         theme_color: '#2196f3',
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
-            sizes: [96, 128, 192, 256, 384, 512]
+            sizes: [192, 256, 384, 512]
           }
         ]
       }),

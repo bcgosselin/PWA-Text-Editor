@@ -14,11 +14,11 @@ const initdb = async () =>
 
 // Function to add content to the database
 export const putDb = async (content) => {
-  const db = await initdb();
+  const db = await openDB('jate', 1);
   const tx = db.transaction('jate', 'readwrite');
   const store = tx.objectStore('jate');
-  await store.put({ id:1, content });
-  await tx.done;
+  const request = store.put({ id: 1, value: content });
+  const result = await request;
   console.log('Content added to the database');
 };
 

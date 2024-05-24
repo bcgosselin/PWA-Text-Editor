@@ -45,6 +45,6 @@ registerRoute(
 );
 
 // Implement offline fallback for HTML pages
-// offlineFallback({
-//   pageFallback: '/index.html',
-// });
+offlineFallback({
+  pageFallback: '/index.html',
+});
