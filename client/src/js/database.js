@@ -29,7 +29,7 @@ export const getDb = async () => {
   const db = await openDB('jate', 1);
   const tx = db.transaction('jate', 'readonly');
   const store = tx.objectStore('jate');
-  // Get the content from the object store with id 1
+  // Get the content from the object stored with id 1
   const content = store.get(1);
   const result = await content;
   // Return the value of the retrieved content, if available
