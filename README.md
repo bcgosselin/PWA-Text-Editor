@@ -1,5 +1,5 @@
 # PWA-Text-Editor-M19
-Offline single-page text editor that runs in the browser featuring a number of data persistence techniques that serve as redundancy in case one of the options is not supported by the browser.
+Developed a PWA text editor with offline functionality using IndexedDB and the idb package. Bundled JavaScript files using Webpack and registered a service worker for asset caching. Deployed the application to Render.
 
 ## Description
 This project is Robert Gosselin's nineteenth bootcamp challenge. This project was created to showcase his skills and aptitude using only text based instructions. This application was hand-written utilizing credited resources [Credits](#credits). The goal of this challenge was to develop and engineer a functioning online/offline text editor referred to as JATE or Just Another Text Editor. Everything included was apart of an ongoing bootcamp to develop and hone Full Stack Web Development skills.
